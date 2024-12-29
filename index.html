@@ -7,17 +7,40 @@
             font-family: sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: white; /* Set background color to white */
+            color: black; /* Ensure text is black for good readability */
+            margin: 0;
         }
         #result {
             margin-top: 20px;
             font-size: 1.2em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50%;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
     <h1>What's Your Fruit?</h1>
     <label for="name">Enter your name:</label><br>
-    <input type="text" id="name" name="name"><br><br>
+    <input type="text" id="name" name="name" placeholder="Type your name" onkeydown="checkEnter(event)"><br><br>
     <button onclick="assignFruit()">Find Your Fruit!</button>
     <div id="result"></div>
 
@@ -33,7 +56,14 @@
             const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
 
             const resultDiv = document.getElementById("result");
-            resultDiv.textContent = `${name}, you are a ${randomFruit}!`;
+            resultDiv.textContent = `${name}, you look like a ${randomFruit}!`;
+        }
+
+        function checkEnter(event) {
+            // Check if the Enter key is pressed
+            if (event.key === "Enter") {
+                assignFruit();
+            }
         }
     </script>
 </body>
